@@ -1,17 +1,84 @@
-import React from 'react';
-import { Text, View, KeyboardAvoidingView, Image, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState ,useEffect } from 'react';
+import { Text, View, KeyboardAvoidingView, Image, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard } from 'react-native';
 
 export default function Login() {
+
+    const [offset] =  useState(new Animated.ValueXY({x: 0, y: 80}));
+    const [opacity] =  useState(new Animated.Value(0));
+    const [logo] =  useState(new Animated.ValueXY({x: 230, y: 230}));
+  
+    useEffect(() => {
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);  
+
+    Animated.parallel([
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 20,
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 300,
+      })
+    ]).start();
+      
+    }, []);
+  
+    //Teclado Aberto
+    function keyboardDidShow () {
+      Animated.parallel([
+        Animated.timing(logo.y, {
+          toValue: 130,
+          duration: 150,
+        }),
+        Animated.timing(logo.x, {
+          toValue: 130,
+          duration: 150,
+        }),
+      ]).start();
+    }
+  
+    //Teclado Fechado
+    function keyboardDidHide () {
+      Animated.parallel([
+        Animated.timing(logo.y, {
+          toValue: 230,
+          duration: 150,
+        }),
+        Animated.timing(logo.x, {
+          toValue: 230,
+          duration: 150,
+        }),
+      ]).start();
+    }  
+
   return (
       <KeyboardAvoidingView style={styles.background}>
-          <View style={styles.containerLogo}>
-          <Image
+     <View style={styles.imagelogo}>
+      <Animated.Image 
+      style={[
+        styles.logo,
+        {
+          width: logo.x,
+          height: logo.y
+        }
+        ]} 
                 source={require('./logo.png')}
-                style={styles.imageStyleLabel}
                 />
-          </View>
-
-          <View style={styles.container}>
+                </View>
+           
+                 <Animated.View 
+                 style={[
+                    styles.container,
+                   {
+                     opacity: opacity,
+                     transform: [
+                       { translateY: offset.y}
+                     ],
+                   },
+                   ]}
+                 >
             <TextInput
                 style={styles.input}
                 placeholder="Email"
@@ -32,7 +99,7 @@ export default function Login() {
                 <Text style={styles.registerText}>Criar conta gratuita</Text>
             </TouchableOpacity>
 
-          </View>
+          </Animated.View>
       </KeyboardAvoidingView>
   );
 }
@@ -40,27 +107,21 @@ export default function Login() {
 const styles = StyleSheet.create({
     background:{
         alignItems: 'center',
-        marginTop: '5%',
-        paddingHorizontal: '5%',
-        width: '100%',
+        justifyContent: 'center',
         flex: 1,
         backgroundColor: '#035E73'
     },
-    containerLogo: {
-        justifyContent: 'center',
+    imagelogo:{
         alignItems: 'center',
-        marginBottom: '5%',
-        marginTop: "30%",
+        justifyContent: 'center',
+        flex:2,
     },
     container:{
         flex:1,
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
-        height: 100,
-        borderRadius: 5,
-        paddingBottom: 10,
-        marginTop: "-50%",
+        paddingBottom: 70,
       },
     input:{
         backgroundColor: '#FFF',
@@ -69,7 +130,7 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         width: '90%',
         marginBottom: 15,
-        padding: 10,
+        padding: 11,
     },
     btnSubmit:{
         alignItems: 'center',
@@ -91,7 +152,8 @@ const styles = StyleSheet.create({
         height: 45,
         width: '90%',
         borderRadius: 7,
-        marginTop: 10,
+        marginTop: 15,
+        marginBottom:80,
       },
       registerText:{
         color: '#FFF',
