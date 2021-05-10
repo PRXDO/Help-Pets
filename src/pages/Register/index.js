@@ -93,12 +93,16 @@ export default function Login() {
                 autoCorrect={false}
                 onChangeText={()=>{}}
             />
+            <TextInput
+                style={styles.input}
+                placeholder="Confirmar Senha"
+                icon="locked"
+                secureTextEntry
+                autoCorrect={false}
+                onChangeText={()=>{}}
+            />
             <TouchableOpacity style={styles.btnSubmit}>
-                <Text style={styles.submitText}>Acessar</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btnRegister}>
-                <Text style={styles.registerText}>Criar conta gratuita</Text>
+                <Text style={styles.submitText}>Cadastrar</Text>
             </TouchableOpacity>
 
           </Animated.View>
@@ -147,18 +151,4 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 18,
       },
-      btnRegister:{
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#46B5B6',
-        height: 45,
-        width: '90%',
-        borderRadius: 7,
-        marginTop: 15,
-        marginBottom:80,
-      },
-      registerText:{
-        color: '#FFF',
-        fontSize: 18
-      }
 })
