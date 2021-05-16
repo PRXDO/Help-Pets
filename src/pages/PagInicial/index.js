@@ -13,9 +13,6 @@ const PagInicial = createAppContainer(
         inicialRouteName: 'PagInicial',
         }
     )
-    import '../style/style.css'; // ou
-    import '../style/style.js';
-    
 
 );
 
