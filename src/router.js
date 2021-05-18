@@ -2,7 +2,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import PagInicial from './pages/PagInicial';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import NewPet from './pages/NewPet';
+
 const Stack = createStackNavigator();
 
 function Routes(){
@@ -10,8 +13,13 @@ function Routes(){
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                    name="PagInicial"
-                    component={PagInicial}
+                    name="Home"
+                    component={Home}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name="NewPet"
+                    component={NewPet}
                     options={{headerShown: false}}
                 />
             </Stack.Navigator>
