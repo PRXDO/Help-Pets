@@ -1,5 +1,6 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useState ,useEffect } from 'react';
-import { Text, View, KeyboardAvoidingView, Image, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard } from 'react-native';
+import { Text, View, KeyboardAvoidingView, Button, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard } from 'react-native';
 
 export default function Login() {
 

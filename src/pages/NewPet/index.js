@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 
-const AddPet = () => {
+export default function NewPet({ navigation }) {
   return (
     <KeyboardAvoidingView style={styles.background}>  
     <ScrollView style={styles.GeneralContainerView}>
@@ -89,7 +89,15 @@ const AddPet = () => {
       </View>
 
       <View>
-        <TouchableOpacity style={styles.btn2}>
+        <TouchableOpacity 
+        style={styles.btn2}
+        onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.btnText}> Voltar </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View>
+        <TouchableOpacity style={styles.btn3}>
           <Text style={styles.btnText}> Salvar </Text>
         </TouchableOpacity>
       </View>
@@ -232,11 +240,20 @@ inputanotation:{
   btn2: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F27052",
+    backgroundColor: "#FFC000",
     height: 45,
     width: "90%",
     borderRadius: 7,
     marginTop: 10,
+    marginBottom:10,
+  },
+  btn3: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#F27052",
+    height: 45,
+    width: "90%",
+    borderRadius: 7,
     marginBottom: 50,
   },
   btnText: {
@@ -244,5 +261,3 @@ inputanotation:{
     fontSize: 18,
   },
 });
-
-export default AddPet;
