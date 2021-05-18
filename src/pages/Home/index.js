@@ -1,88 +1,54 @@
-import React, {useState} from 'react';
-import { Text, View, Button, KeyboardAvoidingView, StyleSheet,
-         TouchableOpacity, TextInput, Modal} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
+import { Text, View, FlatList, StyleSheet } from "react-native";
+import { Avatar, ListItem } from 'react-native-elements';
 
-//import NewPet from './pages/NewPet';
+const list = [
+    {
+    name: 'Valentina',
+    raca: 'Felina - SRD',
+    dtanasc: '14/05/2019',
+    avatar_url: 'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png',
+    },
+    {
+    name: 'Zoe',
+    raca: 'Felina - SRD',
+    dtanasc: '20/04/2020',
+    avatar_url:'https://cdn.pixabay.com/photo/2016/04/01/12/11/avatar-1300582_960_720.png',
+    },
+    ];
 
-export default function Home({ navigation }) {
-
-  return (
-      <KeyboardAvoidingView style={styles.background}>  
-      <Text style={styles.textitle}>Meus Pets</Text> 
-            <TouchableOpacity 
-            style={styles.btnadd} 
-            onPress={() => navigation.navigate('NewPet')}
-            >
-            <Text style={styles.submitText}>+</Text>
-            </TouchableOpacity>
-      </KeyboardAvoidingView>
-  );
+export default props => {
+    return (
+        <View style={styles.background}>
+            <Text style={styles.titletext}>Meus Pets</Text>
+        <View>
+        
+        {
+        list.map((l, i) => (
+            <ListItem key={i} bottomDivider>
+                <Avatar source={{uri: l.avatar_url}} />
+                <ListItem.Content>
+                <ListItem.Title>{l.name}</ListItem.Title>
+                <ListItem.Subtitle>Raça: {l.raca}</ListItem.Subtitle>
+                <ListItem.Subtitle>Data de Nascimento: {l.dtanasc}</ListItem.Subtitle>
+            </ListItem.Content>
+      </ListItem>
+    ))
+  }
+</View>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
-    background:{
-        alignItems: 'center',
-        justifyContent: 'flex-start',
+    background: {
         flex: 1,
-        backgroundColor: '#035E73'
-    },
-    container:{
-        flex:1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '90%',
-        paddingBottom: 70,
+        backgroundColor: '#035E73',
       },
-    textitle:{
-        color: '#fff',
-        fontSize: 30,
-        marginTop:50,
-        marginBottom:25,
-      },
-      texsubtitle1:{
-        color: '#fff',
-        fontSize: 18,
-        marginRight: 270,
-        marginBottom:2,
-      },
-      texsubtitle2:{
-        color: '#fff',
-        fontSize: 18,
-        marginRight: 240,
-        marginBottom:2,
-      },
-    input:{
-        backgroundColor: '#FFF',
-        color: '#222',
-        fontSize: 17,
-        borderRadius: 7,
-        width: '90%',
-        marginBottom: 10,
-        padding: 11,
-    },
-    btnSubmit:{
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F27052',
-        height: 45,
-        width: '90%',
-        borderRadius: 7,
-        marginTop: 10,
-      },
-      btnadd:{
-        backgroundColor: '#FFF',
-        height: '5%',
-        width: '10%',
-        borderRadius: 30,
-        marginTop: -60,
-        marginLeft: 290,
-      },
-      submitText:{
-        color: '#035E73',
-        fontSize: 50,
-        marginTop: -4,
-        marginLeft: 10,
+      titletext:{
+          marginTop:50,
+          fontSize: 30,
+          color: '#fff',
+          marginLeft: '40%',
       },
 })
