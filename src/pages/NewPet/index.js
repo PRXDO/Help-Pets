@@ -106,6 +106,12 @@ export default function NewPet({ navigation }) {
                 onChangeText={(e) => handleChange("dtavermifugo", e)}
             />
 
+<Text style={styles.texsubtitle1}>O pet possui alguma vacina? Se sim, qual(s)?</Text> 
+            <TextInput
+                style={styles.inputanotation}
+                multiline={true}
+                onChangeText={(e) => handleChange("vacina", e)}
+            />
 
 <Text style={styles.texsubtitle1}>Anotações</Text> 
             <TextInput
@@ -113,6 +119,7 @@ export default function NewPet({ navigation }) {
                 multiline={true}
                 onChangeText={(e) => handleChange("anotacao", e)}
             />
+
 
       <View>
         <TouchableOpacity style={styles.btn1}>

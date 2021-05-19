@@ -1,7 +1,7 @@
 import React, { useState ,useEffect } from 'react';
-import { Text, View, KeyboardAvoidingView, Image, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard } from 'react-native';
+import { Text, View, KeyboardAvoidingView, Image, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard, Alert } from 'react-native';
 
-export default function Login() {
+export default function Register({ navigation }) {
 
     const [offset] =  useState(new Animated.ValueXY({x: 0, y: 80}));
     const [opacity] =  useState(new Animated.Value(0));
@@ -52,6 +52,9 @@ export default function Login() {
         }),
       ]).start();
     }  
+    const showAlert = () =>
+    Alert.alert("Sucesso!", "Usuário Cadastrado com Sucesso!", [{}]);
+
 
   return (
       <KeyboardAvoidingView style={styles.background}>
@@ -101,8 +104,16 @@ export default function Login() {
                 autoCorrect={false}
                 onChangeText={()=>{}}
             />
-            <TouchableOpacity style={styles.btnSubmit}>
+            <TouchableOpacity 
+            style={styles.btnSubmit}
+            onPress={showAlert}>
                 <Text style={styles.submitText}>Cadastrar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+            style={styles.btnSubmit}
+            onPress={() => navigation.navigate('Login')}>
+                <Text style={styles.submitText}>Voltar para tela de Login</Text>
             </TouchableOpacity>
 
           </Animated.View>

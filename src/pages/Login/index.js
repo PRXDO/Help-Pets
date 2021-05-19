@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useState ,useEffect } from 'react';
 import { Text, View, KeyboardAvoidingView, Button, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard } from 'react-native';
 
-export default function Login() {
+export default function Login({ navigation }) {
 
     const [offset] =  useState(new Animated.ValueXY({x: 0, y: 80}));
     const [opacity] =  useState(new Animated.Value(0));
@@ -94,11 +94,15 @@ export default function Login() {
                 autoCorrect={false}
                 onChangeText={()=>{}}
             />
-            <TouchableOpacity style={styles.btnSubmit}>
+            <TouchableOpacity 
+            style={styles.btnSubmit}
+            onPress={() => navigation.navigate('Home')}>
                 <Text style={styles.submitText}>Acessar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btnRegister}>
+            <TouchableOpacity 
+            style={styles.btnRegister}
+            onPress={() => navigation.navigate('Register')}>
                 <Text style={styles.registerText}>Criar conta gratuita</Text>
             </TouchableOpacity>
 

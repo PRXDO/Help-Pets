@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import NewPet from './pages/NewPet';
-import Vacinas from './pages/Vacinas';
+import Register from './pages/Register';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +13,16 @@ function Routes(){
     return(
         <NavigationContainer>
             <Stack.Navigator>
+            <Stack.Screen
+                    name="Login"
+                    component={Login}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name="Register"
+                    component={Register}
+                    options={{headerShown: false}}
+                />
             <Stack.Screen
                     name="NewPet"
                     component={NewPet}

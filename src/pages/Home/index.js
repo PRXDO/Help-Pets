@@ -71,11 +71,6 @@ export default props => {
                 >
                 <Text style={styles.submitText}>+</Text>
         </TouchableOpacity> 
-        <TouchableOpacity
-                style={styles.btnteste}
-                >
-                <Text style={styles.submitText}>teste</Text>
-        </TouchableOpacity> 
 
         {/* renderiza as informações que estão sendo colocar na variavel pets */}
         <FlatList
