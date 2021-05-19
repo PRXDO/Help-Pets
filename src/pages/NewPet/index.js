@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   Text,
   View,
@@ -10,8 +11,45 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import uuid from 'react-native-uuid';
 
 export default function NewPet({ navigation }) {
+
+  const [form, setForm] = useState({});
+
+  function handleChange(key, value) {
+    setForm((prevState) => ({ ...prevState, [key]: value }));
+  }
+
+  useEffect(() => {
+    console.log({form})
+  },[form])
+
+  async function handleSubmit() {
+    const key = "@help-pets:pets";
+    let pets = [];
+    const values = await AsyncStorage.getItem(key);
+
+    const newform = {
+      id: uuid.v4(),
+      ...form,
+      //
+      //ultima linha que comentamos
+    };
+
+    if (values !== null) {
+      const parsed = JSON.parse(values);
+      pets = [...parsed,newform];
+    }else{
+      pets = [newform];
+    }
+
+    const jsonValue = JSON.stringify(pets);
+    await AsyncStorage.setItem(key, jsonValue);
+    setForm({})
+  }
+
   return (
     <KeyboardAvoidingView style={styles.background}>  
     <ScrollView style={styles.GeneralContainerView}>
@@ -23,49 +61,49 @@ export default function NewPet({ navigation }) {
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("name", e)}
             />
 
 <Text style={styles.texsubtitle1}>Raça</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("raca", e)}
             />
 
 <Text style={styles.texsubtitle1}>Peso(kg)</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("peso", e)}
             />
 
 <Text style={styles.texsubtitle1}>Data de Nascimento</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("dtanasc", e)}
             />
 
 <Text style={styles.texsubtitle1}>Data do Último Banho</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("dtabanho", e)}
             />
 
 <Text style={styles.texsubtitle2}>Data da Ultima Consulta</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("dtaconsulta", e)}
             />
 
       <Text style={styles.texsubtitle3}>Data da Ultima Aplicação de Vermifugo</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("dtavermifugo", e)}
             />
 
 
@@ -73,7 +111,7 @@ export default function NewPet({ navigation }) {
             <TextInput
                 style={styles.inputanotation}
                 multiline={true}
-                onChangeText={()=>{}}
+                onChangeText={(e) => handleChange("anotacao", e)}
             />
 
       <View>
@@ -97,7 +135,9 @@ export default function NewPet({ navigation }) {
       </View>
 
       <View>
-        <TouchableOpacity style={styles.btn3}>
+        <TouchableOpacity 
+        style={styles.btn3}
+        onPress={() => handleSubmit()}>
           <Text style={styles.btnText}> Salvar </Text>
         </TouchableOpacity>
       </View>

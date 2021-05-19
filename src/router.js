@@ -13,9 +13,14 @@ function Routes(){
     return(
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen
+            <Stack.Screen
                     name="NewPet"
                     component={NewPet}
+                    options={{headerShown: false}}
+                />
+            <Stack.Screen
+                    name="Home"
+                    component={Home}
                     options={{headerShown: false}}
                 />
             </Stack.Navigator>
