@@ -1,6 +1,6 @@
 import React, { useState ,useEffect } from 'react';
 import { Text, View, KeyboardAvoidingView, Image, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard, Alert } from 'react-native';
-
+console.disableYellowBox = true;
 export default function Register({ navigation }) {
 
     const [offset] =  useState(new Animated.ValueXY({x: 0, y: 80}));

@@ -1,8 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useState ,useEffect } from 'react';
 import { Text, View, KeyboardAvoidingView, Button, StyleSheet, TouchableOpacity, TextInput, Animated, Keyboard } from 'react-native';
+console.disableYellowBox = true;
 
-export default function Login({ navigation }) {
+export default function Login(props) {
 
     const [offset] =  useState(new Animated.ValueXY({x: 0, y: 80}));
     const [opacity] =  useState(new Animated.Value(0));
@@ -96,7 +97,7 @@ export default function Login({ navigation }) {
             />
             <TouchableOpacity 
             style={styles.btnSubmit}
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => props.navigation.navigate('Menu')}>
                 <Text style={styles.submitText}>Acessar</Text>
             </TouchableOpacity>
 

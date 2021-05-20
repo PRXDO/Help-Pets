@@ -34,8 +34,6 @@ export default function NewPet({ navigation }) {
     const newform = {
       id: uuid.v4(),
       ...form,
-      //
-      //ultima linha que comentamos
     };
 
     if (values !== null) {
@@ -120,16 +118,17 @@ export default function NewPet({ navigation }) {
                 onChangeText={(e) => handleChange("anotacao", e)}
             />
 
+<Text style={styles.texsubtitle1}>URL icon</Text> 
+            <TextInput
+                style={styles.inputanotation}
+                multiline={true}
+                onChangeText={(e) => handleChange("avatar_url", e)}
+            />
+
 
       <View>
         <TouchableOpacity style={styles.btn1}>
           <Text style={styles.btnText}> Adicionar Imagem </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <TouchableOpacity style={styles.btn1}>
-          <Text style={styles.btnText}> Adicionar Vacina </Text>
         </TouchableOpacity>
       </View>
 
@@ -144,7 +143,7 @@ export default function NewPet({ navigation }) {
       <View>
         <TouchableOpacity 
         style={styles.btn3}
-        onPress={() => handleSubmit()}>
+        onPress={() => {handleSubmit(), navigation.pop()}}>
           <Text style={styles.btnText}> Salvar </Text>
         </TouchableOpacity>
       </View>
@@ -193,7 +192,7 @@ const styles = StyleSheet.create({
     color: '#222',
     fontSize: 17,
     borderRadius: 7,
-    width: '90%',
+    width: 350,
     marginBottom: 10,
     padding: 11,
 },
@@ -203,7 +202,7 @@ inputanotation:{
     color: '#222',
     fontSize: 17,
     borderRadius: 7,
-    width: '90%',
+    width: 350,
     marginBottom: 10,
     padding: 11,
     height: 85,
