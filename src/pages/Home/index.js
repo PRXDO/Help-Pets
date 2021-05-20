@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from "react";
-import { Text, View, FlatList, StyleSheet, TouchableOpacity, Button, Alert } from "react-native";
+import { Text, View, FlatList, StyleSheet, TouchableOpacity, Alert, ScrollView, RefreshControl } from "react-native";
 import { Avatar, ListItem, Icon } from 'react-native-elements';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Entypo } from "@expo/vector-icons";
-
+import Constants from 'expo-constants';
 /* const list = [
     {
     name: 'Valentina',
@@ -19,7 +19,21 @@ import { Entypo } from "@expo/vector-icons";
     },
     ]; */
 
+    const wait = timeout => {
+      return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+      });
+    };
+
     export default function Home(props) {
+
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
     const [pets, setPets] = useState([]);
     const [flag, setFlag] = useState(false)
@@ -113,7 +127,8 @@ import { Entypo } from "@expo/vector-icons";
       },[pets])
 
       return (
-        <View style={styles.background}>
+        <ScrollView style={styles.background} 
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
           <View style={styles.container}>
             <View style={styles.containerButton}>
               <TouchableOpacity
@@ -132,7 +147,7 @@ import { Entypo } from "@expo/vector-icons";
             keyExtractor={keyExtractor}
             renderItem={renderItem}
           />
-        </View>
+        </ScrollView>
       );
     }
 

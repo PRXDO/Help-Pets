@@ -14,6 +14,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import uuid from 'react-native-uuid';
 
+
 export default function NewPet({ navigation }) {
 
   const [form, setForm] = useState({});
@@ -50,7 +51,8 @@ export default function NewPet({ navigation }) {
 
   return (
     <KeyboardAvoidingView style={styles.background}>  
-    <ScrollView style={styles.GeneralContainerView}>
+    <ScrollView 
+    style={styles.GeneralContainerView}>
       <View style={styles.TitleContainer}>
         <Text style={styles.TitleText}>Novo Pet</Text>
       </View>
@@ -134,16 +136,8 @@ export default function NewPet({ navigation }) {
 
       <View>
         <TouchableOpacity 
-        style={styles.btn2}
-        onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.btnText}> Voltar </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <TouchableOpacity 
         style={styles.btn3}
-        onPress={() => {handleSubmit(), navigation.pop()}}>
+        onPress={() => {handleSubmit(), navigation.navigate('Home')}}>
           <Text style={styles.btnText}> Salvar </Text>
         </TouchableOpacity>
       </View>

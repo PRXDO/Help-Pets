@@ -21,8 +21,8 @@ function Routes(){
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name="Home"
-                    component={Home}
+                    name="Menu"
+                    component={Menu}
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
@@ -31,8 +31,8 @@ function Routes(){
                     options={{headerShown: false}}
                 />
                 <Stack.Screen
-                    name="Menu"
-                    component={Menu}
+                    name="Home"
+                    component={Home}
                     options={{headerShown: false}}
                 />
                 <Stack.Screen

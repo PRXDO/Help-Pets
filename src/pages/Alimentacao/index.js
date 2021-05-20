@@ -2,26 +2,19 @@ import React, {useReducer, useState} from 'react';
 import { Text, View, Button, KeyboardAvoidingView, StyleSheet,
          TouchableOpacity, TextInput, FlatList} from 'react-native';
 
-export default function Vacinas() {
+export default function Alimentacao() {
 
   return (
       <KeyboardAvoidingView style={styles.background}>  
-            <Text style={styles.textitle}>Cadastrar Vacinas</Text> 
-            <Text style={styles.texsubtitle1}>Nome Vacina</Text> 
+            <Text style={styles.textitle}>Alimentação Canina</Text> 
+            <Text style={styles.texsubtitle1}>Peso do Pet</Text> 
             <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={namevac => setUser({...useReducer, namevac})}
-            />
-            <Text style={styles.texsubtitle2}>Data de Aplicação</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={()=>{}}
             />
 
             <TouchableOpacity style={styles.btnSubmit}>
-                <Text style={styles.submitText}>Adicionar Vacina</Text>
+                <Text style={styles.submitText}>Calcular</Text>
             </TouchableOpacity>
 
       </KeyboardAvoidingView>

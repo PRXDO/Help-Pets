@@ -103,7 +103,7 @@ export default function Login(props) {
 
             <TouchableOpacity 
             style={styles.btnRegister}
-            onPress={() => navigation.navigate('Register')}>
+            onPress={() => props.navigation.navigate('Register')}>
                 <Text style={styles.registerText}>Criar conta gratuita</Text>
             </TouchableOpacity>
 
