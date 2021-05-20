@@ -11,21 +11,17 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import uuid from 'react-native-uuid';
+import uuid from "react-native-uuid";
 
-
-export default function NewPet({ navigation }) {
-
+export default function NewPet() {
+  const { goBack } = useNavigation();
   const [form, setForm] = useState({});
 
   function handleChange(key, value) {
     setForm((prevState) => ({ ...prevState, [key]: value }));
   }
-
-  useEffect(() => {
-    console.log({form})
-  },[form])
 
   async function handleSubmit() {
     const key = "@help-pets:pets";
@@ -39,169 +35,187 @@ export default function NewPet({ navigation }) {
 
     if (values !== null) {
       const parsed = JSON.parse(values);
-      pets = [...parsed,newform];
-    }else{
+      pets = [...parsed, newform];
+    } else {
       pets = [newform];
     }
 
     const jsonValue = JSON.stringify(pets);
     await AsyncStorage.setItem(key, jsonValue);
-    setForm({})
+
+    setForm({});
+
+    goBack();
   }
 
   return (
-    <KeyboardAvoidingView style={styles.background}>  
-    <ScrollView 
-    style={styles.GeneralContainerView}>
-      <View style={styles.TitleContainer}>
-        <Text style={styles.TitleText}>Novo Pet</Text>
-      </View>
+    <KeyboardAvoidingView style={styles.background}>
+      <ScrollView style={styles.GeneralContainerView}>
+        <View style={styles.TitleContainer}>
+          <Text style={styles.TitleText}>Novo Pet</Text>
+        </View>
 
-            <Text style={styles.texsubtitle1}>Nome Pet</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("name", e)}
-            />
+        <Text style={styles.texsubtitle1}>Nome Pet</Text>
+        <TextInput
+          value={form.name}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("name", e)}
+        />
 
-<Text style={styles.texsubtitle1}>Raça</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("raca", e)}
-            />
+        <Text style={styles.texsubtitle1}>Raça</Text>
+        <TextInput
+          value={form.raca}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("raca", e)}
+        />
 
-<Text style={styles.texsubtitle1}>Peso(kg)</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("peso", e)}
-            />
+        <Text style={styles.texsubtitle1}>Peso(kg)</Text>
+        <TextInput
+          value={form.peso}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("peso", e)}
+        />
 
-<Text style={styles.texsubtitle1}>Data de Nascimento</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("dtanasc", e)}
-            />
+        <Text style={styles.texsubtitle1}>Data de Nascimento</Text>
+        <TextInput
+          value={form.dtanasc}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("dtanasc", e)}
+        />
 
-<Text style={styles.texsubtitle1}>Data do Último Banho</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("dtabanho", e)}
-            />
+        <Text style={styles.texsubtitle1}>Data do Último Banho</Text>
+        <TextInput
+          value={form.dtabanho}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("dtabanho", e)}
+        />
 
-<Text style={styles.texsubtitle2}>Data da Ultima Consulta</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("dtaconsulta", e)}
-            />
+        <Text style={styles.texsubtitle2}>Data da Ultima Consulta</Text>
+        <TextInput
+          value={form.dtaconsulta}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("dtaconsulta", e)}
+        />
 
-      <Text style={styles.texsubtitle3}>Data da Ultima Aplicação de Vermifugo</Text> 
-            <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={(e) => handleChange("dtavermifugo", e)}
-            />
+        <Text style={styles.texsubtitle3}>
+          Data da Ultima Aplicação de Vermifugo
+        </Text>
+        <TextInput
+          value={form.dtavermifugo}
+          style={styles.input}
+          autoCorrect={false}
+          onChangeText={(e) => handleChange("dtavermifugo", e)}
+        />
 
-<Text style={styles.texsubtitle1}>O pet possui alguma vacina? Se sim, qual(s)?</Text> 
-            <TextInput
-                style={styles.inputanotation}
-                multiline={true}
-                onChangeText={(e) => handleChange("vacina", e)}
-            />
+        <Text style={styles.texsubtitle1}>
+          O pet possui alguma vacina? Se sim, qual(s)?
+        </Text>
+        <TextInput
+          value={form.vacina}
+          style={styles.inputanotation}
+          multiline={true}
+          onChangeText={(e) => handleChange("vacina", e)}
+        />
 
-<Text style={styles.texsubtitle1}>Anotações</Text> 
-            <TextInput
-                style={styles.inputanotation}
-                multiline={true}
-                onChangeText={(e) => handleChange("anotacao", e)}
-            />
+        <Text style={styles.texsubtitle1}>Anotações</Text>
+        <TextInput
+          value={form.anotacao}
+          style={styles.inputanotation}
+          multiline={true}
+          onChangeText={(e) => handleChange("anotacao", e)}
+        />
 
-<Text style={styles.texsubtitle1}>URL icon</Text> 
-            <TextInput
-                style={styles.inputanotation}
-                multiline={true}
-                onChangeText={(e) => handleChange("avatar_url", e)}
-            />
+        <Text style={styles.texsubtitle1}>URL icon</Text>
+        <TextInput
+          value={form.avatar_url}
+          style={styles.inputanotation}
+          multiline={true}
+          onChangeText={(e) => handleChange("avatar_url", e)}
+        />
 
+        <View>
+          <TouchableOpacity style={styles.btn1}>
+            <Text style={styles.btnText}> Adicionar Imagem </Text>
+          </TouchableOpacity>
+        </View>
 
-      <View>
-        <TouchableOpacity style={styles.btn1}>
-          <Text style={styles.btnText}> Adicionar Imagem </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <TouchableOpacity 
-        style={styles.btn3}
-        onPress={() => {handleSubmit(), navigation.navigate('Home')}}>
-          <Text style={styles.btnText}> Salvar </Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+        <View>
+          <TouchableOpacity
+            style={styles.btn3}
+            onPress={() => {
+              handleSubmit();
+            }}
+          >
+            <Text style={styles.btnText}> Salvar </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   background: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     flex: 1,
-    backgroundColor: '#035E73',
+    backgroundColor: "#035E73",
   },
-  GeneralContainerView:{
-    marginLeft:30,
+  GeneralContainerView: {
+    marginLeft: 30,
   },
   TitleText: {
     fontSize: 30,
-    color: '#fff',
+    color: "#fff",
   },
-  texsubtitle1:{
-    color: '#fff',
+  texsubtitle1: {
+    color: "#fff",
     fontSize: 18,
     marginRight: 200,
-    marginBottom:2,
-  },
-  
-  texsubtitle2:{
-    color: '#fff',
-    fontSize: 18,
-    marginRight: 200,
-    marginBottom:2,
+    marginBottom: 2,
   },
 
-  texsubtitle3:{
-    color: '#fff',
+  texsubtitle2: {
+    color: "#fff",
+    fontSize: 18,
+    marginRight: 200,
+    marginBottom: 2,
+  },
+
+  texsubtitle3: {
+    color: "#fff",
     fontSize: 18,
     marginRight: 100,
-    marginBottom:2,
+    marginBottom: 2,
   },
 
-  input:{
-    backgroundColor: '#FFF',
-    color: '#222',
+  input: {
+    backgroundColor: "#FFF",
+    color: "#222",
     fontSize: 17,
     borderRadius: 7,
     width: 350,
     marginBottom: 10,
     padding: 11,
-},
+  },
 
-inputanotation:{
-    backgroundColor: '#FFF',
-    color: '#222',
+  inputanotation: {
+    backgroundColor: "#FFF",
+    color: "#222",
     fontSize: 17,
     borderRadius: 7,
     width: 350,
     marginBottom: 10,
     padding: 11,
     height: 85,
-    textAlignVertical:'top',
-},
+    textAlignVertical: "top",
+  },
 
   TitleContainer: {
     paddingTop: 50,
@@ -215,7 +229,6 @@ inputanotation:{
     alignItems: "center",
     justifyContent: "center",
     paddingRight: 300,
-    
   },
 
   TextContainer2: {
@@ -239,15 +252,15 @@ inputanotation:{
 
   NormalText: {
     fontSize: 18,
-    color: '#fff',
+    color: "#fff",
   },
 
   InputContainer1: {
-    backgroundColor: '#FFF',
-    color: '#222',
+    backgroundColor: "#FFF",
+    color: "#222",
     fontSize: 17,
     borderRadius: 7,
-    width: '90%',
+    width: "90%",
     marginBottom: 15,
     padding: 11,
     marginLeft: 20,
@@ -285,7 +298,7 @@ inputanotation:{
     width: "90%",
     borderRadius: 7,
     marginTop: 10,
-    marginBottom:10,
+    marginBottom: 10,
   },
   btn3: {
     alignItems: "center",
@@ -297,7 +310,7 @@ inputanotation:{
     marginBottom: 50,
   },
   btnText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 18,
   },
 });
