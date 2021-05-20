@@ -10,9 +10,11 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Home from "../../pages/Home";
 import NewPet from "../../pages/NewPet";
+import Alimentacao from "../../pages/Alimentacao";
 
 const Drawer = createDrawerNavigator();
 
@@ -38,7 +40,20 @@ export default function DrawerMenu() {
         component={NewPet}
         options={{
           drawerIcon: (config) => (
-            <FontAwesome name="paw" size={30} color="#ffffff" />
+            <MaterialCommunityIcons name="paw" size={30} color="#ffffff" />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Alimentação"
+        component={Alimentacao}
+        options={{
+          drawerIcon: (config) => (
+            <MaterialCommunityIcons
+              name="food-drumstick"
+              size={24}
+              color="#fff"
+            />
           ),
         }}
       />
@@ -79,8 +94,8 @@ function ProfileDrawer(props) {
           />
         </View>
         <View style={styles.containerText}>
-          <Text style={styles.drawerText}>Username</Text>
-          <Text style={styles.drawerTextSmall}>OpenProfile</Text>
+          <Text style={styles.drawerText}>Keila</Text>
+          <Text style={styles.drawerTextSmall}>Perfil</Text>
         </View>
       </View>
     </TouchableOpacity>

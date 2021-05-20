@@ -33,8 +33,6 @@ export default function NewPet({ navigation }) {
     const newform = {
       id: uuid.v4(),
       ...form,
-      //
-      //ultima linha que comentamos
     };
 
     if (values !== null) {
@@ -109,13 +107,14 @@ export default function NewPet({ navigation }) {
           autoCorrect={false}
           onChangeText={(e) => handleChange("dtavermifugo", e)}
         />
+
         <Text style={styles.texsubtitle1}>
           O pet possui alguma vacina? Se sim, qual(s)?
         </Text>
         <TextInput
           style={styles.inputanotation}
           multiline={true}
-          onChangeText={(e) => handleSubmit("vacina", e)}
+          onChangeText={(e) => handleChange("vacina", e)}
         />
 
         <Text style={styles.texsubtitle1}>Anotações</Text>
@@ -123,6 +122,13 @@ export default function NewPet({ navigation }) {
           style={styles.inputanotation}
           multiline={true}
           onChangeText={(e) => handleChange("anotacao", e)}
+        />
+
+        <Text style={styles.texsubtitle1}>URL icon</Text>
+        <TextInput
+          style={styles.inputanotation}
+          multiline={true}
+          onChangeText={(e) => handleChange("avatar_url", e)}
         />
 
         <View>
@@ -141,12 +147,7 @@ export default function NewPet({ navigation }) {
         </View>
 
         <View>
-          <TouchableOpacity
-            style={styles.btn3}
-            onPress={() => {
-              handleSubmit(), navigation.navigate("Home"), showAlert();
-            }}
-          >
+          <TouchableOpacity style={styles.btn3} onPress={() => handleSubmit()}>
             <Text style={styles.btnText}> Salvar </Text>
           </TouchableOpacity>
         </View>
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
     color: "#222",
     fontSize: 17,
     borderRadius: 7,
-    width: "90%",
+    width: 350,
     marginBottom: 10,
     padding: 11,
   },
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     color: "#222",
     fontSize: 17,
     borderRadius: 7,
-    width: "90%",
+    width: 350,
     marginBottom: 10,
     padding: 11,
     height: 85,

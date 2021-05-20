@@ -6,12 +6,12 @@ import Menu from "./component/DrawerMenu";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
 import NewPet from "./pages/NewPet";
-import Vacinas from "./pages/Vacinas";
+import Register from "./pages/Register";
+import Alimentacao from "./pages/Alimentacao";
 
 const Stack = createStackNavigator();
-
+console.disableYellowBox = true;
 function Routes() {
   return (
     <NavigationContainer>
@@ -39,6 +39,11 @@ function Routes() {
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Alimentacao"
+          component={Alimentacao}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

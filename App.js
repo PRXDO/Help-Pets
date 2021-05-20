@@ -4,6 +4,7 @@ import { StyleSheet, SafeAreaView } from "react-native";
 
 import Routes from "./src/router";
 
+console.disableYellowBox = true;
 export default function App() {
   return (
     <>
